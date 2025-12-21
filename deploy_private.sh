@@ -17,10 +17,10 @@ ssh-add $PRIVATE_KEY
 ssh -o StrictHostKeyChecking=no $PRIVATE_USER@$PRIVATE_HOST "mkdir -p /root/app"
 
 # 로컬에서 빌드된 JAR 파일을 원격 서버의 /root/app/app.jar로 복사
-scp -o StrictHostKeyChecking=no /root/app/build/libs/*.jar $PRIVATE_USER@$PRIVATE_HOST:/root/app/app.war
+scp -o StrictHostKeyChecking=no /root/app/build/libs/*.jar $PRIVATE_USER@$PRIVATE_HOST:/root/app/app.jar
 
 # 애플리케이션을 백그라운드에서 실행하고 로그는 app.log에 저장
-ssh -o StrictHostKeyChecking=no $PRIVATE_USER@$PRIVATE_HOST "nohup java -jar /root/app/app.war > /root/app/app.log 2>&1 &"
+ssh -o StrictHostKeyChecking=no $PRIVATE_USER@$PRIVATE_HOST "nohup java -jar /root/app/app.jar > /root/app/app.log 2>&1 &"
 
 # 추가 배포 작업이 필요한 경우 실행
 ssh -o StrictHostKeyChecking=no $PRIVATE_USER@$PRIVATE_HOST "bash </root/deploy.sh"
