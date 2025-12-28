@@ -20,6 +20,8 @@ public class MemberController {
 
         List<Cloud_Member> list =  service.memberList();
         model.addAttribute("list", list);
+
+        // 추가
         return "index";
     }
 }
